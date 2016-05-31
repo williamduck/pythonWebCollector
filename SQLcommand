@@ -1,4 +1,4 @@
-CREATE DATABASE scraping;
+CREATE DATABASE wikipedia;
 
 USE scraping;
 
@@ -27,3 +27,18 @@ ALTER DATABASE scraping CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 ALTER TABLE pages CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE pages CHANGE title title VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE pages CHANGE content content VARCHAR(10000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `wikipedia`.`pages` (
+	`id` INT NOT NULL auto_increment,
+	`url` VARCHAR(255) NOT NULL,
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `wikipedia`.`links` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`fromPageId` INT NULL,
+	`toPageId` INT NULL,
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+);
